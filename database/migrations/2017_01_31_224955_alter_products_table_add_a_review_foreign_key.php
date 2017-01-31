@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterProductsTableAddASellerForeignKey extends Migration
+class AlterProductsTableAddAReviewForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class AlterProductsTableAddASellerForeignKey extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-        	$table->integer('seller_id')->unsigned();
-        	$table->foreign('seller_id')
-        	->references('id')
-        	->on('sellers');
+            $table->integer('review_id')->unsigned();
+            $table->foreign('review_id')
+            ->references('id')
+            ->on('reviews');
         });
     }
 
@@ -29,8 +29,8 @@ class AlterProductsTableAddASellerForeignKey extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-        	$table->dropForeign('seller_id');
-        	$table->dropColumn('seller_id');
+            $table->dropForeign('review_id');
+            $table->dropColumn('review_id');
         });
     }
 }
