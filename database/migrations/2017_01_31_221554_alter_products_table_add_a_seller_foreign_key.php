@@ -17,7 +17,8 @@ class AlterProductsTableAddASellerForeignKey extends Migration
         	$table->integer('seller_id')->unsigned();
         	$table->foreign('seller_id')
         	->references('id')
-        	->on('sellers');
+        	->on('sellers')
+        	->onDelete('cascade');
         });
     }
 
@@ -29,7 +30,7 @@ class AlterProductsTableAddASellerForeignKey extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-        	$table->dropForeign('seller_id');
+        	$table->dropForeign('products_seller_id_foreign');
         	$table->dropColumn('seller_id');
         });
     }

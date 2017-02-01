@@ -15,13 +15,10 @@ class CreateSellersTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-        });
-
-        Schema::table('sellers', function (Blueprint $table) {
             $table->string('first_name');
             $table->string('last_name');
-        });    
+            $table->timestamps();
+        });
     }
 
     /**
