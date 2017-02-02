@@ -14,8 +14,8 @@ class AlterSellersTableAddAAddressForeignKey extends Migration
     public function up()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')
+            $table->integer('seller_address_id')->unsigned();
+            $table->foreign('seller_address_id')
             ->references('id')
             ->on('seller_addresses')
             ->onDelete('cascade');
@@ -30,8 +30,8 @@ class AlterSellersTableAddAAddressForeignKey extends Migration
     public function down()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->dropForeign('sellers_address_id_foreign');
-            $table->dropColumn('address_id');
+            $table->dropForeign('sellers_seller_address_id_foreign');
+            $table->dropColumn('seller_address_id');
         });
     }
 }
