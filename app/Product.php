@@ -9,14 +9,14 @@ class Product extends Model
     protected $table = 'products';
 
     public function sellers(){
-    	return $this->hasMany('app\Seller');
+    	return $this->hasMany('App\Seller');
     }
 
     public function reviews(){
-    	return $this->belongsToMany('app\Review');
+    	return $this->belongsToMany('App\Review');
     }
 
     public function tags(){
-    	return $this->belongsToMany('app\Tag');
+    	return $this->belongsToMany('App\Tag');
     }
 }

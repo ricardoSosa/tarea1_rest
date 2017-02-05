@@ -14,7 +14,6 @@ class ProductsTableSeeder extends Seeder
         $numOfItems = 6;
         $products = factory(App\Product::class, $numOfItems)->make();
         $sellers = App\Seller::all();
-        $tags = App\Tag::pluck('id')->all();
         $product_index = 0;
         foreach($sellers as $seller){
             for($iterations=0; $iterations<3; $iterations++){
@@ -22,6 +21,12 @@ class ProductsTableSeeder extends Seeder
                 $products[$product_index]->save();
                 $product_index++;
             }
+        }
+
+        $products = App\Product::all();
+        foreach ($products as $product) {
+            $product->tags()->attach(App\Tag::find(rand(1,5)));
+            $product->tags()->attach(App\Tag::find(rand(1,5)));
         }
     }
 }

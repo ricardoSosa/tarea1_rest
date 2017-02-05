@@ -9,10 +9,10 @@ class Seller extends Model
     protected $table = "sellers";
 
     public function sellersAdresses(){
-    	return $this->hasOne('app\SellerAddress');
+    	return $this->hasOne('App\SellerAddress');
     }
 
     public function products(){
-    	return $this->belongsTo('app\Product');
+    	return $this->belongsTo('App\Product');
     }
 }

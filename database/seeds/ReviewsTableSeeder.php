@@ -12,16 +12,14 @@ class ReviewsTableSeeder extends Seeder
     public function run()
     {
         $numOfItems = 60;
-        factory(App\Review::class, $numOfItems)->make();
+        $reviews = factory(App\Review::class, $numOfItems)->make();
         $products = App\Product::all();
-
-        $review_id = 1;
+        $review_index = 0;
         foreach($products as $product){
             for($iteration=0; $iteration<10; $iteration++){
-                $review = App\Product::find($review_id);
-                $review->product_id = $product->id;
-                $review->save();
-                $review_id++;
+                $reviews[$review_index]['product_id'] = $product->id;
+                $reviews[$review_index]->save();
+                $review_index++;
             }
         }
     }

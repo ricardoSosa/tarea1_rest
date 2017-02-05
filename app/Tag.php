@@ -9,6 +9,6 @@ class Tag extends Model
     protected $table = 'tags';
 
     public function products(){
-    	return $this->belongsToMany('app\Product');
+    	return $this->belongsToMany('App\Product');
     }
 }

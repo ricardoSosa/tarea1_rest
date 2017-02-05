@@ -15,12 +15,12 @@ class SellersTableSeeder extends Seeder
         $sellers = factory(App\Seller::class, $numOfItems)->make();
         $sellerAddresses = App\SellerAddress::all();
 
-        $index = 1;
+        $add_index = 1;
         foreach($sellers as $seller){
-            $sellerAddress = App\SellerAddress::find($index);
+            $sellerAddress = App\SellerAddress::find($add_index);
             $seller->seller_address_id = $sellerAddress->id;
             $seller->save();
-            $index++;
+            $add_index++;
         }
     }
 }

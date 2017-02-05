@@ -9,6 +9,6 @@ class Review extends Model
     protected $table = 'reviews';
 
     public function products(){
-    	return $this->hasMany('app\Product');
+    	return $this->hasMany('App\Product');
     }
 }

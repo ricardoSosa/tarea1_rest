@@ -9,6 +9,6 @@ class SellerAddress extends Model
     protected $table = 'seller_addresses';
 
     public function sellers(){
-    	return $this->belongsTo('app\Seller');
+    	return $this->belongsTo('App\Seller');
     }
 }
