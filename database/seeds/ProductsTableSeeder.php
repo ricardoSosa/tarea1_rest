@@ -11,26 +11,17 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $numOfProducts = 6;
-        factory(App\Product::class, $numOfProducts)->create();
-        $sellers = app\Seller::all();
-
-        $product_id = 1;
+        $numOfItems = 6;
+        $products = factory(App\Product::class, $numOfItems)->make();
+        $sellers = App\Seller::all();
+        $tags = App\Tag::pluck('id')->all();
+        $product_index = 0;
         foreach($sellers as $seller){
-            for($iteration=0; $iteration<3; $iteration++){
-                $product = app\Product::find($product_id);
-                $product->seller_id = $seller->id;
-                $product->save();
-                $product_id++;
+            for($iterations=0; $iterations<3; $iterations++){
+                $products[$product_index]['seller_id'] = $seller->id;
+                $products[$product_index]->save();
+                $product_index++;
             }
-        }
-
-        $products = app\Product::all();
-        $tags = app\Tag::all()->list('id');
-
-        foreach($products as $product){
-            $
-            $product->roles()->attach($faker->randomElement($tags));
         }
     }
 }

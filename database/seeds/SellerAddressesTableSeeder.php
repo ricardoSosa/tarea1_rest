@@ -11,7 +11,7 @@ class SellerAddressesTableSeeder extends Seeder
      */
     public function run()
     {
-        $numOfProducts = 2;
-        factory(App\SellerAddress::class, $numOfProducts)->create();
+        $numOfItems = 2;
+        factory(App\SellerAddress::class, $numOfItems)->create();
     }
 }

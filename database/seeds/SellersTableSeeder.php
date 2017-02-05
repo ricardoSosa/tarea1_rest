@@ -11,16 +11,16 @@ class SellersTableSeeder extends Seeder
      */
     public function run()
     {
-        $numOfProducts = 2;
-        factory(App\Seller::class, $numOfProducts)->create();
-        $sellers = app\Seller::all();
-        $sellerAddresses = app\SellerAddress::all();
+        $numOfItems = 2;
+        $sellers = factory(App\Seller::class, $numOfItems)->make();
+        $sellerAddresses = App\SellerAddress::all();
 
-        for($index=1; $index<=$numOfProducts; $index++){
-        	$seller = app\Seller::find($index);
-        	$sellerAddress = app\SellerAddress::find($index);
-        	$seller->seller_address_id = $sellerAddress->id;
+        $index = 1;
+        foreach($sellers as $seller){
+            $sellerAddress = App\SellerAddress::find($index);
+            $seller->seller_address_id = $sellerAddress->id;
             $seller->save();
+            $index++;
         }
     }
 }

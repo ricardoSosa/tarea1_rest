@@ -11,13 +11,14 @@ class ReviewsTableSeeder extends Seeder
      */
     public function run()
     {
-        $numOfProducts = 60;
-        factory(App\Review::class, $numOfProducts)->create();
+        $numOfItems = 60;
+        factory(App\Review::class, $numOfItems)->make();
+        $products = App\Product::all();
 
         $review_id = 1;
         foreach($products as $product){
             for($iteration=0; $iteration<10; $iteration++){
-                $review = app\Product::find($review_id);
+                $review = App\Product::find($review_id);
                 $review->product_id = $product->id;
                 $review->save();
                 $review_id++;
