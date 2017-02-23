@@ -13,11 +13,12 @@ use App\Tag;
 class ProductsController extends Controller
 {
     public function index(){
-    	return Response::json(Product::with('tags')->get());
+    	$products = Product::all()->load('tags', 'seller');
+    	return Response::json($products);
     }
 
     public function show(Product $product){
-    	return $product->load('sellers');
+    	return $product->load('tags', 'seller');
     }
 
     public function store(Request $request){
@@ -26,19 +27,8 @@ class ProductsController extends Controller
     	return Response::json($product);
     }
 
-    public function update(Request $request, Product $product){
+    public function update(ProductRequest $request, Product $product){
     	$attributes = $request->all();
-    	if($request->isMethod('put')){
-    		$this->validate($request, [
-    		'first_name' => 'required|string',
-    		'last_name' => 'required|string'
-    		]);
-    	} else if($request->isMethod('patch')){
-    		$this->validate($request, [
-    		'first_name' => 'string',
-    		'last_name' => 'string'
-    		]);
-    	}
     	$product->update($attributes);
     	return $product;
     }

@@ -18,36 +18,14 @@ class SellersController extends Controller
     	return $seller;
     }
 
-    public function store(Request $request){
+    public function store(SellerRequest $request){
     	$attributes = $request->all();
-    	$this->validate($request, [
-    		'first_name' => 'required',
-    		'last_name' => 'required'
-    		]);
-    	$seller = Seller::create($attributes);
+        $seller = Seller::create($attributes);
     	return Response::json($seller);
     }
 
-      public function attach(Request $request, Seller $seller){
-	    $address = $request->all();
-	    $seller->seller_address_id = $address['id'];
-	    $seller->save();
-	    return $seller;
-	  }
-
-    public function update(Request $request, Seller $seller){
+    public function update(SellerRequest $request, Seller $seller){
     	$attributes = $request->all();
-    	if($request->isMethod('put')){
-    		$this->validate($request, [
-    		'first_name' => 'required|string',
-    		'last_name' => 'required|string'
-    		]);
-    	} else if($request->isMethod('patch')){
-    		$this->validate($request, [
-    		'first_name' => 'string',
-    		'last_name' => 'string'
-    		]);
-    	}
     	$seller->update($attributes);
     	return $seller;
     }

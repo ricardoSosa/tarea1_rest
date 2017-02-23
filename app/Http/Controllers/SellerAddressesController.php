@@ -6,29 +6,22 @@ use Illuminate\Http\Request;
 
 class SellerAddressesController extends Controller
 {
-    public function store(Request $request){
+    public function store(SellerAddressRequest $request, Seller $seller){
     	$attributes = $request->all();
-    	$this->validate($request, [
-    		'address' => 'required',
-    		'city' => 'required|string',
-    		'state' => 'required|string',
-    		'country' => 'required|string',
-    		'postal_code' => 'required|string'
-    		]);
-    	$SellerAddress = SellerAddress::create($attributes);
-    	return Response::json($SellerAddress);
+    	$sellerAddress = SellerAddress::create($attributes);
+    	attach($sellerAddress, $seller);
+    	return Response::json($sellerAddress);
     }
 
-    public function update(Request $request, SellerAddress $sellerAddress){
+    public function attach(SellerAddress $sellerAddress, Seller $seller){
+	    $seller->seller_address_id = $sellerAddress['id'];
+	    $seller->save();
+	    return $seller;
+    }
+
+    public function update(SellerAddressRequest $request, SellerAddress $sellerAddress){
     	$attributes = $request->all();
-    	$this->validate($request, [
-    		'address' => 'required|string',
-    		'city' => 'required|string',
-    		'state' => 'required|string',
-    		'country' => 'required|string',
-    		'postal_code' => 'required|string'
-    		]);
     	$sellerAddress->update($attributes);
-    	return $SellerAddress;
+    	return $sellerAddress;
     }
 }

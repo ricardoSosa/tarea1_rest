@@ -14,7 +14,7 @@ class AlterProductsTableAddASellerForeignKey extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-        	$table->integer('seller_id')->unsigned();
+        	$table->integer('seller_id')->nullable()->unsigned();
         	$table->foreign('seller_id')
         	->references('id')
         	->on('sellers')

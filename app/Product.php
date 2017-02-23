@@ -10,8 +10,8 @@ class Product extends Model
 
     protected $fillable = ["name", "price", "description"];
 
-    public function sellers(){
-    	return $this->hasOne('App\Seller');
+    public function seller(){
+    	return $this->belongsTo('App\Seller');
     }
 
     public function reviews(){
