@@ -8,8 +8,10 @@ class Product extends Model
 {
     protected $table = 'products';
 
+    protected $fillable = ["name", "price", "description"];
+
     public function sellers(){
-    	return $this->hasMany('App\Seller');
+    	return $this->hasOne('App\Seller');
     }
 
     public function reviews(){

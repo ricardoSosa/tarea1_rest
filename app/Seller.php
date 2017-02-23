@@ -8,11 +8,13 @@ class Seller extends Model
 {
     protected $table = "sellers";
 
+    protected $fillable = ["first_name", "last_name"];
+
     public function sellersAdresses(){
     	return $this->hasOne('App\SellerAddress');
     }
 
     public function products(){
-    	return $this->belongsTo('App\Product');
+    	return $this->belongsToMany('App\Product');
     }
 }

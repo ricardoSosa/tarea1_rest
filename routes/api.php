@@ -23,23 +23,21 @@ use Illuminate\Http\Request;
 
 Route::get('sellers', 'SellersController@index');
 
-//Route::get('sellers/{id}', 'SellersController@show');
+Route::get('sellers/{seller}', 'SellersController@show');
 
-//Route::post('sellers', 'SellersController@store');
+Route::post('sellers', 'SellersController@store');
 
-//Route::put('sellers/{id}', 'SellersController@update');
+Route::put('sellers/{seller}', 'SellersController@update');
 
-//Route::patch('sellers/{id}', 'SellersController@update');
+Route::delete('sellers/{seller}', 'SellersController@destroy');
 
-//Route::delete('sellers/{id}', 'SellersController@destroy');
+Route::post('sellers/{seller}/sellersAddresses', 'SellerAddressesController@store');
 
-//Route::post('sellers/{id}/sellersAddresses', 'SellerAddressesController@store');
-
-//Route::put('sellers/{id}/sellerAddresses', 'SellerAddressesController@update');
+Route::put('sellers/{seller}/sellerAddresses', 'SellerAddressesController@update');
 
 Route::get('products', 'ProductsController@index');
 
-//Route::get('products/{id}', 'ProductsController@show');
+Route::get('products/{product}', 'ProductsController@show');
 
 Route::post('products', 'ProductsController@store');
 
