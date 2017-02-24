@@ -11,6 +11,7 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Seller;
 use App\Tag;
+use App\Review;
 
 class ProductsController extends Controller
 {
@@ -59,8 +60,10 @@ class ProductsController extends Controller
     }
 
     public function destroy(Product $product){
-        $reviewId = $product;
-
+        $reviews = Review::where("product_id", $product->id)->get();
+        foreach($reviews as $review){
+            $review->delete();
+        }
     	$product->delete();
     	return Response::json([], 200);
     }

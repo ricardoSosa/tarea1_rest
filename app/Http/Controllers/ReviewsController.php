@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Response;
 class ReviewsController extends Controller
 {
 
-	public function index(Product $product){
-		return Response::json($product->load('tags'));
+	public function show(Product $product){
+		$review = Review::where("product_id", $product->id)->get();
+        return Response::json($review);
 	}
 
     public function store(ReviewRequest $request, Product $product){
@@ -29,7 +30,7 @@ class ReviewsController extends Controller
         return $review;
     }
 
-    public function destroy(Review $review){
+    public function destroy(Product $product, Review $review){
     	$review->delete();
     	return Response::json([], 200);
     }

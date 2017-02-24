@@ -53,8 +53,8 @@ Route::delete('products/{product}', 'ProductsController@destroy');
 
 Route::post('products/{product}/reviews', 'ReviewsController@store');
 
-Route::get('products/{product}/reviews', 'ReviewsController@index');
+Route::get('products/{product}/reviews', 'ReviewsController@show');
 
-Route::delete('products/{product}/reviews/{id}', 'ProductsController@destroy');
+Route::delete('products/{product}/reviews/{review}', 'ReviewsController@destroy');
 //index, show, store, update, N/A patch, destroy
 //});

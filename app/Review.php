@@ -10,7 +10,7 @@ class Review extends Model
 
     protected $fillable = ["reviewer_name", "title", "content", "review_date"];
 
-    public function products(){
-    	return $this->hasMany('App\Product');
+    public function product(){
+    	return $this->hasOne('App\Product');
     }
 }

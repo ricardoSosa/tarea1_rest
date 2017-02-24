@@ -47,7 +47,7 @@ class ProductRequest extends FormRequest
             case 'PATCH':
                 return [
                     'name' => 'string',
-                    'price' => 'numeric',
+                    'price' => 'numeric|min:1',
                     'description' => 'string',
                 ];
                 break;
