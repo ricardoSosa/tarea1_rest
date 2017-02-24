@@ -13,7 +13,7 @@ class SellerAddressRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class SellerAddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'address' => 'required',
+            'address' => 'required|string',
             'city' => 'required|string',
             'state' => 'required|string',
             'country' => 'required|string',

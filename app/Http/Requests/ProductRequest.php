@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,17 +29,17 @@ class ProductRequest extends FormRequest
             case 'POST':
                 return [
                     'name' => 'required|string',
-                    'price' => 'required|float|min:1',
+                    'price' => 'required|numeric|min:1',
                     'description' => 'required|string',
-                    'tags' => 'required|array|string',
-                    'seller' => 'required'
+                    'tags' => 'required|array',
+                    'seller_id' => 'required'
                 ];
                 break;
 
             case 'PUT':
                 return [
                     'name' => 'required|string',
-                    'price' => 'required|float',
+                    'price' => 'required|numeric',
                     'description' => 'required|string',
                 ];
                 break;
@@ -47,7 +47,7 @@ class ProductRequest extends FormRequest
             case 'PATCH':
                 return [
                     'name' => 'string',
-                    'price' => 'float',
+                    'price' => 'numeric',
                     'description' => 'string',
                 ];
                 break;

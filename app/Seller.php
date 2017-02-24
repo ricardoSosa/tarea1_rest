@@ -10,7 +10,7 @@ class Seller extends Model
 
     protected $fillable = ["first_name", "last_name"];
 
-    public function sellersAdresses(){
+    public function sellerAdress(){
     	return $this->hasOne('App\SellerAddress');
     }
 

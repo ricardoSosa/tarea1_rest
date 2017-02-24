@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Response;
 
 use App\Seller;
 
+use App\Product;
+
+use App\SellerAddress;
+
+use App\Http\Requests\SellerRequest;
+
 class SellersController extends Controller
 {
      public function index(){
@@ -31,7 +37,16 @@ class SellersController extends Controller
     }
 
     public function destroy(Seller $seller){
-    	$seller->delete();
+        //Product delete.
+        $idSeller = $seller->id;
+        $product = Product::findOrFail($idSeller);
+        $product->delete();
+        //Address delete.
+        $idAddress = $seller->seller_address_id;
+        $seller_address = SellerAddress::findOrFail($idAddress);
+        $seller_address->delete();
+        //Seller delete.
+        $seller->delete();
     	return Response::json([], 200);
     }
 }
